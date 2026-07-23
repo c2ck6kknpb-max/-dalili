@@ -145,3 +145,25 @@ padding:35px;
 text-align:center;
 margin-top:80px;
 }
+/* ===== أفضل الأنشطة ===== */
+
+.featured{
+    padding:100px 60px;
+    background:#eef4ff;
+}
+
+.featured h2{
+    text-align:center;
+    font-size:42px;
+    margin-bottom:50px;
+}
+
+.featured .card h3{
+    color:#2563eb;
+    margin-bottom:15px;
+}
+
+.featured .card p{
+    margin:8px 0;
+    color:#555;
+}
