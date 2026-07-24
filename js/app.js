@@ -1,26 +1,16 @@
-// ===== DALILI APP =====
+const searchInput = document.querySelector("input");
+const cards = document.querySelectorAll(".business-card");
 
-console.log("Dalili Started");
+searchInput.addEventListener("keyup", function () {
+    const value = this.value.toLowerCase();
 
-window.addEventListener("scroll", () => {
-    const navbar = document.querySelector(".navbar");
+    cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
 
-    if (window.scrollY > 50) {
-        navbar.style.boxShadow = "0 10px 30px rgba(0,0,0,.15)";
-        navbar.style.background = "#ffffff";
-    } else {
-        navbar.style.boxShadow = "0 8px 25px rgba(0,0,0,.08)";
-    }
-});
-
-document.querySelectorAll(".card").forEach(card => {
-
-    card.addEventListener("mouseenter", () => {
-        card.style.transform = "translateY(-12px) scale(1.03)";
+        if (text.includes(value)) {
+            card.style.display = "block";
+        } else {
+            card.style.display = "none";
+        }
     });
-
-    card.addEventListener("mouseleave", () => {
-        card.style.transform = "translateY(0)";
-    });
-
 });
