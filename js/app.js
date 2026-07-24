@@ -1,16 +1,33 @@
-const searchInput = document.querySelector("input");
-const cards = document.querySelectorAll(".business-card");
+const searchInput = document.querySelector('input');
+const searchButton = document.querySelector('.search button');
 
-searchInput.addEventListener("keyup", function () {
-    const value = this.value.toLowerCase();
+function searchBusinesses() {
+    const value = searchInput.value.trim().toLowerCase();
 
-    cards.forEach(card => {
-        const text = card.innerText.toLowerCase();
+    const items = document.querySelectorAll(
+        '.business-card, .card'
+    );
 
-        if (text.includes(value)) {
-            card.style.display = "block";
+    items.forEach(item => {
+        const text = item.textContent.toLowerCase();
+
+        if (value === "" || text.includes(value)) {
+            item.style.display = "";
         } else {
-            card.style.display = "none";
+            item.style.display = "none";
         }
     });
+}
+
+// البحث أثناء الكتابة
+searchInput.addEventListener("input", searchBusinesses);
+
+// البحث عند الضغط على الزر
+searchButton.addEventListener("click", searchBusinesses);
+
+// البحث عند الضغط على Enter
+searchInput.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+        searchBusinesses();
+    }
 });
