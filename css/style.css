@@ -272,3 +272,78 @@ margin-top:80px;
 .business-info button:hover{
     background:#1d4ed8;
 }
+
+    /* تحسينات عامة */
+
+body {
+    font-family: "Cairo", sans-serif;
+    background: #f8fafc;
+    color: #1f2937;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: #ffffff;
+    box-shadow: 0 2px 12px rgba(0,0,0,.08);
+}
+
+.hero {
+    background: linear-gradient(135deg,#2563eb,#1d4ed8);
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.hero h1 {
+    font-size: 52px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 20px;
+    opacity: .9;
+}
+
+.search {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.search input {
+    width: 420px;
+    max-width: 90%;
+    padding: 15px;
+    border-radius: 12px;
+    border: none;
+    font-size: 18px;
+}
+
+.search button {
+    padding: 15px 25px;
+    border: none;
+    border-radius: 12px;
+    background: #f59e0b;
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+    transition: .3s;
+}
+
+.search button:hover {
+    background: #d97706;
+}
+
+.business-card {
+    transition: .3s;
+}
+
+.business-card:hover {
+    transform: translateY(-8px);
+}
