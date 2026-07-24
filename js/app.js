@@ -14,8 +14,8 @@ function renderBusinesses(list) {
 
     noResults.style.display = "none";
 
-    list.forEach(item => {
-        container.innerHTML += `
+list.forEach((item, index) => {
+    container.innerHTML += `
             <div class="business-card">
                 <img src="${item.image}" alt="${item.name}">
                 <div class="business-info">
