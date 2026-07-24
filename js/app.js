@@ -22,8 +22,7 @@ function renderBusinesses(list) {
                     <h3>${item.name}</h3>
                     <p>${item.category} • ${item.city}</p>
                     <span>⭐ ${item.rating}</span>
-                    <a href="business.html" class="details-btn">عرض التفاصيل</a>
-                </div>
+<a href="business.html?id=${index}" class="details-btn">عرض التفاصيل</a>                </div>
             </div>
         `;
     });
