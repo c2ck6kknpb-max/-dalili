@@ -347,3 +347,35 @@ body {
 .business-card:hover {
     transform: translateY(-8px);
 }
+.business-page{
+    max-width:900px;
+    margin:auto;
+    padding:50px 20px;
+}
+
+.business-page img{
+    width:100%;
+    border-radius:18px;
+}
+
+.info{
+    margin:30px 0;
+    line-height:2;
+    font-size:20px;
+}
+
+.details-btn,
+.visit-btn{
+    display:inline-block;
+    background:#2563eb;
+    color:white;
+    text-decoration:none;
+    padding:14px 24px;
+    border-radius:10px;
+    margin-top:20px;
+}
+
+.details-btn:hover,
+.visit-btn:hover{
+    background:#1d4ed8;
+}
