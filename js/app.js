@@ -1,31 +1,35 @@
-const searchInput = document.querySelector('input');
-const searchButton = document.querySelector('.search button');
+const searchInput = document.querySelector("input");
+const searchButton = document.querySelector(".search button");
+const noResults = document.getElementById("no-results");
 
 function searchBusinesses() {
     const value = searchInput.value.trim().toLowerCase();
 
-    const items = document.querySelectorAll(
-        '.business-card, .card'
-    );
+    const items = document.querySelectorAll(".business-card, .card");
+
+    let found = 0;
 
     items.forEach(item => {
         const text = item.textContent.toLowerCase();
 
         if (value === "" || text.includes(value)) {
             item.style.display = "";
+            found++;
         } else {
             item.style.display = "none";
         }
     });
+
+    if (found === 0 && value !== "") {
+        noResults.style.display = "block";
+    } else {
+        noResults.style.display = "none";
+    }
 }
 
-// البحث أثناء الكتابة
 searchInput.addEventListener("input", searchBusinesses);
-
-// البحث عند الضغط على الزر
 searchButton.addEventListener("click", searchBusinesses);
 
-// البحث عند الضغط على Enter
 searchInput.addEventListener("keydown", function (e) {
     if (e.key === "Enter") {
         searchBusinesses();
