@@ -1,36 +1,47 @@
-const searchInput = document.querySelector(".search input");
+const container = document.getElementById("business-list");
+const searchInput = document.querySelector("input");
 const searchButton = document.querySelector(".search button");
+const noResults = document.getElementById("no-results");
+
+function renderBusinesses(list) {
+    container.innerHTML = "";
+
+    if (list.length === 0) {
+        noResults.style.display = "block";
+        container.appendChild(noResults);
+        return;
+    }
+
+    noResults.style.display = "none";
+
+    list.forEach(item => {
+        container.innerHTML += `
+            <div class="business-card">
+                <img src="${item.image}" alt="${item.name}">
+                <div class="business-info">
+                    <h3>${item.name}</h3>
+                    <p>${item.category} • ${item.city}</p>
+                    <span>⭐ ${item.rating}</span>
+                    <a href="business.html" class="details-btn">عرض التفاصيل</a>
+                </div>
+            </div>
+        `;
+    });
+}
 
 function searchBusinesses() {
     const value = searchInput.value.trim().toLowerCase();
 
-    const cards = document.querySelectorAll(".card, .business-card");
+    const filtered = businesses.filter(item =>
+        item.name.toLowerCase().includes(value) ||
+        item.category.toLowerCase().includes(value) ||
+        item.city.toLowerCase().includes(value)
+    );
 
-    let found = 0;
-
-    cards.forEach(card => {
-        const text = card.textContent.toLowerCase();
-
-        if (value === "" || text.includes(value)) {
-            card.style.display = "";
-            found++;
-        } else {
-            card.style.display = "none";
-        }
-    });
-
-    const noResults = document.getElementById("no-results");
-    if (noResults) {
-        noResults.style.display = (found === 0 && value !== "") ? "block" : "none";
-    }
+    renderBusinesses(filtered);
 }
+
+renderBusinesses(businesses);
 
 searchInput.addEventListener("input", searchBusinesses);
 searchButton.addEventListener("click", searchBusinesses);
-
-searchInput.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") {
-        e.preventDefault();
-        searchBusinesses();
-    }
-});
