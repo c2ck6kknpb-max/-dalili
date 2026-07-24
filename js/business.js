@@ -1,37 +1,16 @@
-// ===== Dalili Business Page =====
+const params = new URLSearchParams(window.location.search);
+const id = Number(params.get("id"));
 
-// رقم الهاتف (عدله حسب النشاط)
-const phoneNumber = "+963999999999";
+const business = businesses[id];
 
-// رقم واتساب (بدون + أو مسافات)
-const whatsappNumber = "963999999999";
+if (business) {
+    document.querySelector("h1").textContent = business.name;
+    document.querySelector(".overlay p").textContent =
+        `⭐ ${business.rating}`;
 
-// زر الاتصال
-const callBtn = document.querySelector(".call-btn");
-if (callBtn) {
-  callBtn.href = `tel:${phoneNumber}`;
-}
+    document.querySelector(".business-hero img").src =
+        business.image;
 
-// زر واتساب
-const whatsappBtn = document.querySelector(".whatsapp-btn");
-if (whatsappBtn) {
-  whatsappBtn.href = `https://wa.me/${whatsappNumber}`;
-  whatsappBtn.target = "_blank";
-}
-
-// زر المفضلة
-const favoriteBtn = document.querySelector(".favorite-btn");
-
-if (favoriteBtn) {
-  favoriteBtn.addEventListener("click", function (e) {
-    e.preventDefault();
-
-    if (favoriteBtn.classList.contains("active")) {
-      favoriteBtn.classList.remove("active");
-      favoriteBtn.textContent = "❤️ إضافة للمفضلة";
-    } else {
-      favoriteBtn.classList.add("active");
-      favoriteBtn.textContent = "💖 تمت الإضافة";
-    }
-  });
+    document.querySelector(".business-main p").textContent =
+        `${business.category} في ${business.city}`;
 }
