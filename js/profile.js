@@ -39,10 +39,8 @@ location.href="login.html";
 
 });
 
-
-
-document.getElementById("logout").onclick = async()=>{
-
+document.getElementById("loginBtn").onclick = async()=>{
+  
 await signOut(auth);
 
 location.href="login.html";
