@@ -1,42 +1,56 @@
-import { auth } from "./firebase.js";
+import { auth, db } from "./firebase.js";
+
 import {
-  createUserWithEmailAndPassword
+createUserWithEmailAndPassword
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
-const name = document.getElementById("name");
-const email = document.getElementById("email");
-const password = document.getElementById("password");
-const confirmPassword = document.getElementById("confirmPassword");
-const registerBtn = document.getElementById("registerBtn");
+import {
+doc,
+setDoc
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
-registerBtn.addEventListener("click", async () => {
 
-    if (!name.value || !email.value || !password.value || !confirmPassword.value) {
-        alert("يرجى تعبئة جميع الحقول");
-        return;
-    }
+const btn = document.getElementById("registerBtn");
 
-    if (password.value !== confirmPassword.value) {
-        alert("كلمتا المرور غير متطابقتين");
-        return;
-    }
 
-    try {
+btn.onclick = async ()=>{
 
-        await createUserWithEmailAndPassword(
-            auth,
-            email.value,
-            password.value
-        );
+let name = document.getElementById("name").value;
+let email = document.getElementById("email").value;
+let password = document.getElementById("password").value;
+let confirm = document.getElementById("confirmPassword").value;
 
-        alert("تم إنشاء الحساب بنجاح");
 
-        window.location.href = "login.html";
+if(password !== confirm){
+alert("كلمة المرور غير متطابقة");
+return;
+}
 
-    } catch (error) {
 
-        alert(error.message);
+try{
 
-    }
+let user = await createUserWithEmailAndPassword(
+auth,
+email,
+password
+);
 
+
+await setDoc(doc(db,"users",user.user.uid),{
+name:name,
+email:email
 });
+
+
+alert("تم إنشاء الحساب بنجاح");
+
+location.href="index.html";
+
+
+}catch(error){
+
+alert(error.message);
+
+}
+
+};
