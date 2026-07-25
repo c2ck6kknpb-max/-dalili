@@ -7,8 +7,11 @@ signInWithEmailAndPassword
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
 
-document.getElementById("loginBtn").onclick = async()=>{
+document.getElementById("loginBtn").onclick = function(){
 
+alert("الزر يعمل");
+
+};
 
 let email =
 document.getElementById("email").value;
