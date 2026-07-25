@@ -1,5 +1,31 @@
-document.getElementById("loginBtn").onclick = function(){
+import { auth } from "./firebase.js";
 
-alert("الزر يعمل");
+import {
+  signInWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
-};
+const loginBtn = document.getElementById("loginBtn");
+
+loginBtn.addEventListener("click", async () => {
+
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
+
+  if (!email || !password) {
+    alert("أدخل البريد الإلكتروني وكلمة المرور");
+    return;
+  }
+
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+
+    alert("تم تسجيل الدخول بنجاح");
+
+    window.location.href = "profile.html";
+
+  } catch (error) {
+    alert("فشل تسجيل الدخول: " + error.message);
+    console.error(error);
+  }
+
+});
