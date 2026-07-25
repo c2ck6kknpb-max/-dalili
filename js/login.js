@@ -1,7 +1,8 @@
 console.log("login.js يعمل");
+
 import { auth } from "./firebase.js";
 
-import 
+import {
 signInWithEmailAndPassword
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
