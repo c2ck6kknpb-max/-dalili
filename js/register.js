@@ -1,12 +1,28 @@
 import { auth } from "./firebase.js";
-import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+import {
+  createUserWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
+const name = document.getElementById("name");
 const email = document.getElementById("email");
 const password = document.getElementById("password");
-const button = document.getElementById("registerBtn");
+const confirmPassword = document.getElementById("confirmPassword");
+const registerBtn = document.getElementById("registerBtn");
 
-button.addEventListener("click", async () => {
+registerBtn.addEventListener("click", async () => {
+
+    if (!name.value || !email.value || !password.value || !confirmPassword.value) {
+        alert("يرجى تعبئة جميع الحقول");
+        return;
+    }
+
+    if (password.value !== confirmPassword.value) {
+        alert("كلمتا المرور غير متطابقتين");
+        return;
+    }
+
     try {
+
         await createUserWithEmailAndPassword(
             auth,
             email.value,
@@ -14,9 +30,13 @@ button.addEventListener("click", async () => {
         );
 
         alert("تم إنشاء الحساب بنجاح");
+
         window.location.href = "login.html";
 
-    } catch (e) {
-        alert(e.message);
+    } catch (error) {
+
+        alert(error.message);
+
     }
+
 });
