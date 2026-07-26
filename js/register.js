@@ -26,31 +26,25 @@ alert("كلمة المرور غير متطابقة");
 return;
 }
 
+try {
 
-try{
+  const userCredential = await createUserWithEmailAndPassword(
+    auth,
+    email,
+    password
+  );
 
-let user = await createUserWithEmailAndPassword(
-auth,
-email,
-password
-);
+  await setDoc(doc(db, "users", userCredential.user.uid), {
+    name: name.trim(),
+    email: email.trim()
+  });
 
+  alert("تم إنشاء الحساب بنجاح");
 
-await setDoc(doc(db,"users",user.user.uid),{
-name:name,
-email:email
-});
+  location.href = "login.html";
 
+} catch (error) {
 
-alert("تم إنشاء الحساب بنجاح");
-
-location.href="index.html";
-
-
-}catch(error){
-
-alert(error.message);
+  alert(error.code + "\n" + error.message);
 
 }
-
-};
