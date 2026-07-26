@@ -22,10 +22,8 @@ loginBtn.addEventListener("click", async () => {
     alert("تم تسجيل الدخول بنجاح");
 
     window.location.href = "profile.html";
-
-  } catch (error) {
-    alert("فشل تسجيل الدخول: " + error.message);
-    console.error(error);
-  }
-
+catch (error) {
+  console.error(error);
+  alert(error.code + "\n" + error.message);
+}
 });
