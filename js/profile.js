@@ -38,11 +38,7 @@ location.href="login.html";
 }
 
 });
-
-document.getElementById("loginBtn").onclick = async()=>{
-  
-await signOut(auth);
-
-location.href="login.html";
-
+document.getElementById("logoutBtn").onclick = async () => {
+  await signOut(auth);
+  location.href = "login.html";
 };
